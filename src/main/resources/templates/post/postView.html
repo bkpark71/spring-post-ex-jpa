@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>게시판 글 목록</h2>
+    <p th:text="${session.name}"></p>
+    <hr>
+    <table>
+        <tr>
+            <th>postId</th>
+            <th>title</th>
+            <th>body</th>
+            <th>userId</th>
+            <th>likes</th>
+        </tr>
+        <tr th:each="post:${allPosts}">
+            <td>
+                <a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.postId}"></a>
+            </td>
+            <td>
+                <a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.title}"></a>
+            </td>
+            <td th:text="${post.body}">내용</td>
+            <td th:text="${post.userId}"></td>
+            <td th:text="${post.likes}">좋아요</td>
+
+            <td th:if="${post.userId == session.userId}">
+                <!-- 본인이 등록한 게스글에만 삭제버튼이 보여지도록 수정 -->
+                <button th:onclick="|location.href='@{/posts/delete/{postId}(postId=${post.postId})}'|"
+                        type="button">삭제</button>
+            </td>
+        </tr>
+    </table>
+    <button th:onclick="|location.href='@{/addPosts}'|">게시글 작성</button>
+    <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+</body>
+</html>

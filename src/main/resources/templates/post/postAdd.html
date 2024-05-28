@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>게시판 글 등록</h1>
+   <p th:text="${session.name}"></p>
+   <hr>
+   <form th:action="@{/addPosts}" method="post" th:object="${post}">
+       <label for="title"></label>
+       <input type="text" th:field="*{title}" placeholder="제목을 입력하세요">
+       <label for="body"></label>
+       <input type="text" th:field="*{body}" placeholder="글 내용을 입력하세요">
+
+        <!--   로그인한 사용자의 정보를 가지고 post 등록-->
+       <input hidden="text" name="userId" th:value="${session.userId}" >
+
+       <button type="submit">저장</button>
+   </form>
+   <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+</body>
+</html>

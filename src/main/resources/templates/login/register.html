@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>회원 가입</h1>
+   <hr>
+   <form th:action="@{/users/new}" method="post" >
+       <label for="userId"></label>
+       <input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요(최대 8자)" size="10">
+       <label for="password"></label>
+       <input type="password" name="password" id="password" placeholder="암호를 입력하세요(최대 10자)" size="10">
+       <label for="name"></label>
+       <input type="text" name="name" id="name" placeholder="사용자명을 입력하세요" size="20">
+       <button type="submit">가입</button>
+   </form>
+</body>
+</html>
